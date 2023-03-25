@@ -30,7 +30,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -53,7 +52,7 @@
                 <tr>
                     <td>{{ $Mahasiswa->nim }}</td>
                     <td>{{ $Mahasiswa->nama }}</td>
-                    <td>{{ $Mahasiswa-> kelas->nama_kelas }}</td>
+                    <td>{{ $Mahasiswa->kelas->nama_kelas }}</td>
                     <td>{{ $Mahasiswa->jurusan }}</td>
                     <td>{{ $Mahasiswa->no_handphone }}</td>
                     <td>{{ $Mahasiswa->email }}</td>
@@ -73,6 +72,4 @@
         </table>
         {!! $posts->links() !!}
     </div>
-
-
-    @endsection
+@endsection
