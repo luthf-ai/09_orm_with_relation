@@ -114,4 +114,11 @@ class MahasiswaController extends Controller
             ->with('success', 'Mahasiswa deleted successfully');
     }
 
+    public function nilai($nim) //mahasiswas.nilai route not found, add route in web.php
+    {
+        $mahasiswas = Mahasiswa::with('kelas')->with('matkul')->find($nim);
+
+        return view('mahasiswas.nilai', compact('mahasiswas'));
+    }
+
 }

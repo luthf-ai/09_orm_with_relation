@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 return new class extends Migration
 {
     /**
@@ -11,11 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('mahasiswas', function (Blueprint $table) {
-            // many to many matakuliah
-            $table->unsignedBigInteger('matakuliah_id')->nullable();
+        Schema::create('mhs_matkul', function (Blueprint $table) {
+            $table->string('mahasiswa_nim');
+            $table->foreign('mahasiswa_nim')->references('nim')->on('mahasiswas'); //why not working? 
+            $table->unsignedBigInteger('matakuliah_id');
             $table->foreign('matakuliah_id')->references('id')->on('matakuliah');
-            
+            $table->string('nilai', 2);
+            $table->timestamps();
         });
     }
 
@@ -24,9 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('mahasiswas', function (Blueprint $table) {
-            $table->dropForeign(['matakuliah_id']);
-            $table->dropColumn('matakuliah_id');
-        });
+        Schema::dropIfExists('mhs_matkul');
     }
 };
